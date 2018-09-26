@@ -22,6 +22,12 @@
             file_put_contents(ROOT.'models/'.$tableName.".php","<?php \r\n".$str);
 
             // 4.生成视图
+            $sql = "SHOW FULL FIELDS FROM $tableName";
+            $model = \libs\Db::getInstance();
+            $stmt = $model -> prepare($sql);
+            $stmt -> execute();
+            $tableArr = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
+
             if(!is_dir(ROOT.'views/'.$tableName)){
                 mkdir(ROOT.'views/'.$tableName);
             }
@@ -40,7 +46,8 @@
             include(ROOT.'template/index.html');
             $str = ob_get_clean();
             file_put_contents(ROOT.'views/'.$tableName."/index.html",$str);
-
+            var_dump($tableArr);
+            die;
         }
 
     }

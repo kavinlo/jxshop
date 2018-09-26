@@ -19,30 +19,37 @@
     <form action="__GROUP__/Category/categoryAdd" method="post" name="theForm" enctype="multipart/form-data">
         <table width="100%" id="general-table">
 
-            <?php foreach($tableArr as $v):
-                    if($v['Field']=='id' || $v['Field'] == 'create_at')
-                        continue ;
-            ?>
-
+            
             <tr>
-                <td class="label"><?=$v['Comment']?>:</td>
+                <td class="label">标题:</td>
                 <td>
-                    <?php if(substr($v['Type'],0,4) =='enum' ): ?>
-                    <input type="radio" name="enum" value="y" checked> 是
-                    <input type="radio" name="enum" value="n" >        否
-
-                    <?php elseif($v['Type'] =='longtext'): ?>
-                    <textarea name="longtext"  cols="30" rows="10"></textarea> <font color="red">*</font>
-
-                    <?php else: ?>
-                    <input type="text" name="<?=$v['Comment']?>"><font color="red">*</font>
-                    <?php endif ?>
-
+                                        <input type="text" name="标题"><font color="red">*</font>
+                    
                 </td>
             </tr>
 
-            <?php endforeach ?>
+            
+            <tr>
+                <td class="label">内容:</td>
+                <td>
+                                        <textarea name="longtext"  cols="30" rows="10"></textarea> <font color="red">*</font>
 
+                    
+                </td>
+            </tr>
+
+            
+            <tr>
+                <td class="label">是否显示:</td>
+                <td>
+                                        <input type="radio" name="enum" value="y" checked> 是
+                    <input type="radio" name="enum" value="n" >        否
+
+                    
+                </td>
+            </tr>
+
+            
         </table>
         <div class="button-div">
             <input type="submit" value=" 确定 " />

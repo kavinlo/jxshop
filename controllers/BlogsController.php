@@ -1,16 +1,17 @@
+<?php 
     namespace controllers;
-    class <?=$cname?> {
+    class BlogsController {
 
         //显示表单列表页
         public function index()
         {
-            view("<?=$tableName?>/index");
+            view("Blogs/index");
         }
 
         //显示表单添加页
         public function create()
         {
-            view("<?=$tableName?>/created");
+            view("Blogs/created");
         }
 
         // 处理添加表单
