@@ -16,14 +16,14 @@
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form action="__GROUP__/Category/categoryAdd" method="post" name="theForm" enctype="multipart/form-data">
+    <form action="/Blogs/insert" method="post" >
         <table width="100%" id="general-table">
 
             
             <tr>
                 <td class="label">标题:</td>
                 <td>
-                                        <input type="text" name="标题"><font color="red">*</font>
+                                        <input type="text" name="title"><font color="red">*</font>
                     
                 </td>
             </tr>
@@ -32,7 +32,7 @@
             <tr>
                 <td class="label">内容:</td>
                 <td>
-                                        <textarea name="longtext"  cols="30" rows="10"></textarea> <font color="red">*</font>
+                                        <textarea name="content"  cols="30" rows="10"></textarea> <font color="red">*</font>
 
                     
                 </td>
@@ -42,8 +42,8 @@
             <tr>
                 <td class="label">是否显示:</td>
                 <td>
-                                        <input type="radio" name="enum" value="y" checked> 是
-                    <input type="radio" name="enum" value="n" >        否
+                                        <input type="radio" name="is_show" value="y" checked> 是
+                    <input type="radio" name="is_show" value="n" >        否
 
                     
                 </td>

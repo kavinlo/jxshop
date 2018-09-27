@@ -17,7 +17,9 @@
         // 处理添加表单
         public function insert()
         {
-
+            $blog = new \models\Blogs();
+            $blog ->fill();
+            $blog ->insert();
         }
 
         //处理删除表单

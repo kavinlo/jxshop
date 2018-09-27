@@ -1,30 +1,8 @@
 <?php 
     namespace models;
 
-    class Blogs {
-
-        //处理插入数据表单
-        public function insert()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function delete()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function update()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function search()
-        {
-
-        }
+    class Blogs extends Model {
+        public $table = "Blogs";
+        protected $filltable = ['title','content','is_show'];
 
     }

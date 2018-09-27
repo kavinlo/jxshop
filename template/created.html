@@ -16,7 +16,7 @@
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form action="__GROUP__/Category/categoryAdd" method="post" name="theForm" enctype="multipart/form-data">
+    <form action="/<?=$tableName?>/insert" method="post" >
         <table width="100%" id="general-table">
 
             <?php foreach($tableArr as $v):
@@ -28,14 +28,14 @@
                 <td class="label"><?=$v['Comment']?>:</td>
                 <td>
                     <?php if(substr($v['Type'],0,4) =='enum' ): ?>
-                    <input type="radio" name="enum" value="y" checked> 是
-                    <input type="radio" name="enum" value="n" >        否
+                    <input type="radio" name="<?=$v['Field']?>" value="y" checked> 是
+                    <input type="radio" name="<?=$v['Field']?>" value="n" >        否
 
                     <?php elseif($v['Type'] =='longtext'): ?>
-                    <textarea name="longtext"  cols="30" rows="10"></textarea> <font color="red">*</font>
+                    <textarea name="<?=$v['Field']?>"  cols="30" rows="10"></textarea> <font color="red">*</font>
 
                     <?php else: ?>
-                    <input type="text" name="<?=$v['Comment']?>"><font color="red">*</font>
+                    <input type="text" name="<?=$v['Field']?>"><font color="red">*</font>
                     <?php endif ?>
 
                 </td>

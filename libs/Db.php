@@ -24,4 +24,8 @@
             return self::$_pdo -> prepare($sql);
         }
 
+        public function exec($sql){
+            return self::$_pdo->exec($sql);
+        }
+
     }
