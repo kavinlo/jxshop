@@ -1,30 +1,22 @@
 <?php 
     namespace models;
 
-    class category {
+    class category extends Model {
 
-        //处理插入数据表单
-        public function insert()
+        public $table = "category";
+        protected $filltable = [""]; 
+
+        public function getcat()
         {
-
+            return $this -> findAll([
+                'where' => 'parent_id=0'
+            ]);
         }
 
-        //处理插入数据表单
-        public function delete()
+        public function ajax_get_cat($id)
         {
-
+            return $this -> findAll([
+                'where' => 'parent_id='.$id
+            ]);
         }
-
-        //处理插入数据表单
-        public function update()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function search()
-        {
-
-        }
-
     }

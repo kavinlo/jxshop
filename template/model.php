@@ -1,29 +1,8 @@
     namespace models;
 
-    class <?=$tableName?> {
+    class <?=$tableName?> extends Model {
 
-        //处理插入数据表单
-        public function insert()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function delete()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function update()
-        {
-
-        }
-
-        //处理插入数据表单
-        public function search()
-        {
-
-        }
+        public $table = "<?=$tableName?>";
+        protected $filltable = ["<?=$filltable?>"]; 
 
     }

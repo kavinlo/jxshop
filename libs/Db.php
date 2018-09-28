@@ -13,12 +13,14 @@
         }
         private function __clone(){}
 
-        public static function getInstance(){
-            if(self::$_obj===null){
-                self::$_obj = new self;
-            }
-            return self::$_obj;
+   public static function getInstance()
+    {
+        if(self::$_obj === null)
+        {
+            self::$_obj = new self;
         }
+        return self::$_obj;
+    }
 
         public function prepare ($sql){
             return self::$_pdo -> prepare($sql);
@@ -26,6 +28,12 @@
 
         public function exec($sql){
             return self::$_pdo->exec($sql);
+        }
+
+        // 获取最新添加的记录的ID
+        public function lastInsertId()
+        {
+            return self::$_pdo->lastInsertId();
         }
 
     }
