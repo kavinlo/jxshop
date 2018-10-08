@@ -39,13 +39,12 @@
         }
 
         public function fill($data){
-            foreach ($_POST as $k=>$v){
+            foreach ($data as $k=>$v){
                 if(!in_array($k,$this->filltable)){
                     unset($data[$k]);
                 }
             }
             $this->data = $data;
-
         }
 
         public function findOne($id){
@@ -61,8 +60,10 @@
                 'fields' => '*',
                 'where' => 1,
                 'order_by' => 'id',
-                'order_way' => 'desc',
+                'order_way' => 'asc',
                 'per_page'=>20,
+                'join'=>'',
+                'groupby'=>'',
             ];
             // 合并用户的配置
             if($options)
@@ -77,9 +78,12 @@
             
             $sql = "SELECT {$_option['fields']}
                      FROM {$this->table}
+                     {$_option['join']}
                      WHERE {$_option['where']} 
+                     {$_option['groupby']}
                      ORDER BY {$_option['order_by']} {$_option['order_way']} 
                      LIMIT $offset,{$_option['per_page']}";
+                    //  echo $sql;
             $stmt = $this->_db->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll( PDO::FETCH_ASSOC );
@@ -117,20 +121,49 @@
             $sql = "UPDATE $this->table SET $keys WHERE id = ?";
             $stmt = $this->_db -> prepare($sql);
             $values[] = $id;
-            $a = $stmt -> execute($values);
-            
+            $stmt -> execute($values);
             header("Location: http://localhost:9999/$this->table/index");
         }
 
         public function delete($id)
         {
+            $this->_before_delete();
             $sql = "DELETE FROM $this->table WHERE id = $id";
             $this->_db->exec($sql);
         }
 
-        public function del_img($id)
+        public function del_img()
         {
-            // $this->fin
+             // 如果是修改就删除原图片
+             if(isset($_GET['id']))
+             {
+                 // 先从数据库中取出原LOGO
+                 $ol = $this->findOne($_GET['id']);
+                 // 删除
+                 @unlink(ROOT . 'public'. $ol['logo']);
+             }
+        }
+
+        //递归树形结构顺序
+        public function tree()
+        {
+            //取出所有的权限数据
+            $data = $this->findAll();
+            $ret = $this->_tree($data['data']);
+            return $ret;
+        }
+
+        public function _tree($data,$pri_id=0,$level=0)
+        {
+            static $ret = [];
+            foreach($data as $v){
+                if($v['parent_id']==$pri_id){
+                    $v['level'] = $level;
+                    $ret[] = $v;
+                    $this->_tree($data,$v['id'],$level+1);
+                }
+            }
+            return $ret;
         }
 
     }
