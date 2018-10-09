@@ -83,8 +83,10 @@
                     <?=$v['pri_list']?>
                 </td>
                 <td>
+                    <?php if($v['id']!=1): ?>
                     <a href="/role/edit?id=<?=$v['id']?>">修改</a>
                     <a onclick="return confirm('确定要删除吗？');" href="/role/delete?id=<?=$v['id']?>">删除</a>
+                    <?php endif ?>
                 </td>
             </tr>
             <?php endforeach ?>

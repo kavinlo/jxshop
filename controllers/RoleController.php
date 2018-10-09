@@ -5,10 +5,7 @@
         //显示表单列表页
         public function index()
         {
-            // SELECT a.*,GROUP_CONCAT(c.pri_name) FROM role a 
-            //     LEFT JOIN role_privlege b ON a.id = b.role_id
-            //     LEFT JOIN privilege c ON b.pri_id = c.id
-            //         GROUP BY a.id
+
             $obj = new \models\Role;
       
             $data = $obj->findAll([
@@ -51,7 +48,14 @@
         {
             $obj = new \models\Role;
             $data = $obj -> findOne($_GET['id']);
-            view('Role/edit',$data);
+            $priData = $obj -> getpriByid($_GET['id']);
+            $obj = new \models\privilege;
+            $pris = $obj->tree($_GET['id']);
+            view('Role/edit',[
+                'data'=>$data,
+                'pris'=>$pris,
+                'priData'=>$priData
+            ]);
         }
 
         //处理更新表单

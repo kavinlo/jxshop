@@ -122,6 +122,8 @@
             $stmt = $this->_db -> prepare($sql);
             $values[] = $id;
             $stmt -> execute($values);
+            $this->_late_update();
+
             header("Location: http://localhost:9999/$this->table/index");
         }
 
