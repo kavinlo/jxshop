@@ -1,6 +1,6 @@
 <?php 
     namespace controllers;
-    class GoodsController {
+    class GoodsController  extends BaseController{
 
         //显示表单列表页
         public function index()

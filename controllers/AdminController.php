@@ -1,6 +1,6 @@
 <?php 
     namespace controllers;
-    class AdminController {
+    class AdminController extends BaseController{
 
         //显示表单列表页
         public function index()
@@ -13,15 +13,21 @@
         //显示表单添加页
         public function create()
         {
-            view("admin/created");
+            $obj = new \models\role;
+            $roleData = $obj -> findAll();
+            view("admin/created",[
+                'roleData' => $roleData['data']
+            ]);
         }
 
         // 处理添加表单
         public function insert()
         {
             $obj = new \models\Admin;
+            $_POST['password'] = md5($_POST['password']);
             $obj -> fill($_POST);
             $obj -> insert();
+            header('Location:http://localhost:9999/admin/index');
         }
 
         //处理删除表单
@@ -48,5 +54,6 @@
             $obj -> fill($_POST);
             $obj -> update($_GET['id']);
         }
+
 
     }

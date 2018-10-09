@@ -1,7 +1,7 @@
 <?php
     namespace controllers;
     
-    class CodeController {
+    class CodeController  extends BaseController{
 
         public function make()
         {

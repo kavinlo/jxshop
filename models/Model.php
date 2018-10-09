@@ -12,6 +12,7 @@
         public function _late_insert(){}
         public function _before_update(){}
         public function _late_update(){}
+        public function _before_delete(){}
 
 
         public function __construct(){

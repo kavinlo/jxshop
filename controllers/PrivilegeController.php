@@ -1,6 +1,6 @@
 <?php 
     namespace controllers;
-    class PrivilegeController {
+    class PrivilegeController extends BaseController {
 
         //显示表单列表页
         public function index()
