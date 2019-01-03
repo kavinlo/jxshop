@@ -23,7 +23,9 @@
     }else{
         $controller = '\controllers\IndexController';
         $action = 'index';
-    }
+    }  
+
+    echo 'helloword';
 
     $_c = new $controller;
     $_c -> $action();
