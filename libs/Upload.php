@@ -1,2 +1,2 @@
 <?php
-    namespace libs;
+	echo "测试";
